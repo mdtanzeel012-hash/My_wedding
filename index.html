@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation - Tanzeel & Sahina</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        weddingPink: '#FDF0F4',
+                        weddingPinkSoft: '#FBF4F6',
+                        weddingRose: '#E8A0B2',
+                        goldAccent: '#D4AF37',
+                        goldLight: '#F3E5AB',
+                        silverAccent: '#C0C0C0',
+                        silverLight: '#E8E8E8',
+                        deepRoyal: '#3D1C2A'
+                    },
+                    fontFamily: {
+                        amiri: ['Amiri', 'serif'],
+                        script: ['Great Vibes', 'cursive'],
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Metallic Text & Border Gradients */
+        .text-gold-gradient {
+            background: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .text-silver-gradient {
+            background: linear-gradient(135deg, #8a9ba8 0%, #E8E8E8 25%, #99aab8 50%, #f0f3f5 75%, #6e7f8d 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .border-gold-silver {
+            border-image: linear-gradient(135deg, #D4AF37, #C0C0C0, #D4AF37) 1;
+        }
+
+        .gold-box-shadow {
+            box-shadow: 0 10px 30px -5px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Islamic Geometric Pattern Background Overlay */
+        .islamic-pattern {
+            background-color: #FDF0F4;
+            background-image: radial-gradient(#D4AF37 0.75px, transparent 0.75px), radial-gradient(#C0C0C0 0.75px, #FDF0F4 0.75px);
+            background-size: 30px 30px;
+            background-position: 0 0, 15px 15px;
+            background-opacity: 0.15;
+        }
+
+        /* Floating Flower Petal Animation Canvas */
+        #petalCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+    </style>
+</head>
+<body class="islamic-pattern text-gray-800 font-sans antialiased relative overflow-x-hidden">
+
+    <!-- Canvas for Floating Rose Petals -->
+    <canvas id="petalCanvas"></canvas>
+
+    <div class="fixed bottom-6 right-6 z-50">
+        <button id="musicToggle" onclick="toggleMusic()" class="w-12 h-12 bg-white rounded-full shadow-lg border-2 border-goldAccent flex items-center justify-center text-goldAccent hover:bg-goldAccent hover:text-white transition-all duration-300 transform hover:scale-110" title="Play/Pause Background Music">
+            <i id="musicIcon" class="fas fa-music animate-pulse"></i>
+        </button>
+        <audio id="bgMusic" loop>
+            <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=arabic-oriental-background-112702.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <header class="min-h-screen flex flex-col items-center justify-center text-center p-6 relative overflow-hidden">
+        <div class="max-w-3xl w-full mx-auto py-12 px-6 rounded-3xl glass-card gold-box-shadow border-2 border-goldAccent/40 my-8 relative">
+            
+            <!-- Silver & Gold Decorative Corner Frames -->
+            <div class="absolute top-3 left-3 w-12 h-12 border-t-2 border-l-2 border-goldAccent"></div>
+            <div class="absolute top-3 right-3 w-12 h-12 border-t-2 border-r-2 border-goldAccent"></div>
+            <div class="absolute bottom-3 left-3 w-12 h-12 border-b-2 border-l-2 border-goldAccent"></div>
+            <div class="absolute bottom-3 right-3 w-12 h-12 border-b-2 border-r-2 border-goldAccent"></div>
+
+            <!-- Bismillah Calligraphy -->
+            <div class="mb-6">
+                <p class="font-amiri text-3xl sm:text-4xl md:text-5xl text-gold-gradient py-2 font-bold leading-relaxed">
+                    بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
+                </p>
+                <p class="text-xs sm:text-sm tracking-widest text-gray-600 uppercase mt-2">In the name of Allah, the Most Gracious, the Most Merciful</p>
+            </div>
+
+            <div class="w-24 h-0.5 bg-gradient-to-r from-transparent via-goldAccent to-transparent mx-auto my-4"></div>
+
+            <p class="text-sm sm:text-base font-serif italic text-pink-800 tracking-wider my-3">
+                "And We created you in pairs" <br><span class="text-xs text-gray-500 font-sans tracking-normal">(Surah An-Naba 78:8)</span>
+            </p>
+
+            <p class="text-xs uppercase tracking-widest text-gray-500 mt-6 mb-2">Together with their families</p>
+
+            <!-- Bride and Groom Names Section -->
+            <div class="my-6">
+                <h1 class="font-script text-5xl sm:text-6xl md:text-7xl text-gold-gradient my-2 leading-tight">
+                    Tanzeel
+                </h1>
+                <p class="text-xs sm:text-sm font-sans text-gray-600 font-medium">
+                    Son of Mr. Belal Ahmed & Mrs. Israt Bano
+                </p>
+
+                <div class="my-4 flex items-center justify-center gap-4">
+                    <span class="h-px w-12 bg-silverAccent"></span>
+                    <span class="font-script text-3xl text-weddingRose">&</span>
+                    <span class="h-px w-12 bg-silverAccent"></span>
+                </div>
+
+                <h1 class="font-script text-5xl sm:text-6xl md:text-7xl text-gold-gradient my-2 leading-tight">
+                    Sahina
+                </h1>
+                <p class="text-xs sm:text-sm font-sans text-gray-600 font-medium">
+                    Daughter of Mr. Ainul Ansari & Mrs. Aisha Khatoon
+                </p>
+            </div>
+
+            <p class="text-sm font-serif text-gray-700 mt-8">
+                Cordially invite you to celebrate their union of togetherness and love.
+            </p>
+
+            <!-- Scroll Indicator -->
+            <div class="mt-8">
+                <a href="#countdown" class="inline-block text-goldAccent hover:text-weddingRose transition-colors duration-300">
+                    <i class="fas fa-chevron-down text-2xl animate-bounce"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section id="countdown" class="py-12 px-4 max-w-4xl mx-auto text-center">
+        <div class="glass-card rounded-2xl p-6 sm:p-8 gold-box-shadow">
+            <h2 class="font-serif text-2xl sm:text-3xl text-gray-800 mb-6 flex items-center justify-center gap-2">
+                <i class="far fa-clock text-goldAccent"></i> Countdown to the Wedding
+            </h2>
+            
+            <div class="grid grid-cols-4 gap-2 sm:gap-4 max-w-lg mx-auto">
+                <div class="bg-white/80 p-3 sm:p-4 rounded-xl border border-pink-200 shadow-sm">
+                    <span id="days" class="block font-serif text-2xl sm:text-4xl font-bold text-gold-gradient">00</span>
+                    <span class="text-xs uppercase text-gray-500 font-medium">Days</span>
+                </div>
+                <div class="bg-white/80 p-3 sm:p-4 rounded-xl border border-pink-200 shadow-sm">
+                    <span id="hours" class="block font-serif text-2xl sm:text-4xl font-bold text-gold-gradient">00</span>
+                    <span class="text-xs uppercase text-gray-500 font-medium">Hours</span>
+                </div>
+                <div class="bg-white/80 p-3 sm:p-4 rounded-xl border border-pink-200 shadow-sm">
+                    <span id="minutes" class="block font-serif text-2xl sm:text-4xl font-bold text-gold-gradient">00</span>
+                    <span class="text-xs uppercase text-gray-500 font-medium">Mins</span>
+                </div>
+                <div class="bg-white/80 p-3 sm:p-4 rounded-xl border border-pink-200 shadow-sm">
+                    <span id="seconds" class="block font-serif text-2xl sm:text-4xl font-bold text-gold-gradient">00</span>
+                    <span class="text-xs uppercase text-gray-500 font-medium">Secs</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 px-4 max-w-5xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="font-script text-5xl text-gold-gradient mb-2">Wedding Events</h2>
+            <p class="text-sm font-serif text-gray-600 uppercase tracking-widest">Join us in our sacred celebrations</p>
+            <div class="w-16 h-0.5 bg-silverAccent mx-auto mt-3"></div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Event 1: Haldi -->
+            <div class="glass-card rounded-2xl p-6 text-center border-t-4 border-t-goldAccent hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between">
+                <div>
+                    <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4 border border-goldAccent text-goldAccent">
+                        <i class="fas fa-sun text-2xl"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-gray-800 mb-1">Haldi Ceremony</h3>
+                    <p class="text-xs uppercase tracking-wider text-weddingRose font-semibold mb-4">May Allah bless with radiance</p>
+                    
+                    <div class="space-y-3 text-sm text-gray-600 my-4 border-y border-pink-100 py-4">
+                        <p class="flex items-center justify-center gap-2">
+                            <i class="far fa-calendar-alt text-goldAccent"></i>
+                            <span class="font-semibold text-gray-700">15th March 2027</span>
+                        </p>
+                        <p class="flex items-center justify-center gap-2">
+                            <i class="far fa-clock text-goldAccent"></i>
+                            <span>4:00 PM Onwards</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <span class="inline-block bg-pink-50 text-pink-800 text-xs px-3 py-1 rounded-full border border-pink-200">Pre-Wedding Blessing</span>
+                </div>
+            </div>
+
+            <!-- Event 2: Nikah -->
+            <div class="glass-card rounded-2xl p-6 text-center border-t-4 border-t-goldAccent hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 relative gold-box-shadow flex flex-col justify-between">
+                <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-goldAccent text-white text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full shadow-sm">
+                    Main Auspicious Event
+                </div>
+                <div>
+                    <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4 mt-2 border border-goldAccent text-goldAccent">
+                        <i class="fas fa-hands-praying text-2xl"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-gray-800 mb-1">Nikah Ceremony</h3>
+                    <p class="text-xs uppercase tracking-wider text-weddingRose font-semibold mb-4">Solemnization of Marriage</p>
+                    
+                    <div class="space-y-3 text-sm text-gray-600 my-4 border-y border-pink-100 py-4">
+                        <p class="flex items-center justify-center gap-2">
+                            <i class="far fa-calendar-alt text-goldAccent"></i>
+                            <span class="font-semibold text-gray-700">17th March 2027</span>
+                        </p>
+                        <p class="flex items-start justify-center gap-2 text-left">
+                            <i class="fas fa-map-marker-alt text-goldAccent mt-1"></i>
+                            <span>Bride's Residence,<br>Peto, Hazaribagh</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <button onclick="copyAddress('Bride\'s Residence, Peto, Hazaribagh')" class="w-full text-xs bg-white hover:bg-goldAccent hover:text-white text-gray-700 border border-goldAccent/50 py-2 px-3 rounded-lg transition-colors duration-300 flex items-center justify-center gap-2">
+                        <i class="far fa-copy"></i> Copy Location
+                    </button>
+                </div>
+            </div>
+
+            <!-- Event 3: Reception -->
+            <div class="glass-card rounded-2xl p-6 text-center border-t-4 border-t-goldAccent hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between">
+                <div>
+                    <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center mx-auto mb-4 border border-goldAccent text-goldAccent">
+                        <i class="fas fa-glass-cheers text-2xl"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-gray-800 mb-1">Walima / Reception</h3>
+                    <p class="text-xs uppercase tracking-wider text-weddingRose font-semibold mb-4">Celebration Dinner</p>
+                    
+                    <div class="space-y-3 text-sm text-gray-600 my-4 border-y border-pink-100 py-4">
+                        <p class="flex items-center justify-center gap-2">
+                            <i class="far fa-calendar-alt text-goldAccent"></i>
+                            <span class="font-semibold text-gray-700">19th March 2027</span>
+                        </p>
+                        <p class="flex items-start justify-center gap-2 text-left">
+                            <i class="fas fa-building text-goldAccent mt-1"></i>
+                            <span>Hotel Rahmania,<br>Ansari Nagar, Chatra</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <button onclick="copyAddress('Hotel Rahmania, Ansari Nagar, Chatra')" class="w-full text-xs bg-white hover:bg-goldAccent hover:text-white text-gray-700 border border-goldAccent/50 py-2 px-3 rounded-lg transition-colors duration-300 flex items-center justify-center gap-2">
+                        <i class="far fa-copy"></i> Copy Location
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 px-4 max-w-4xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-8">
+            
+            <!-- Contact Card -->
+            <div class="glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between gold-box-shadow">
+                <div>
+                    <div class="text-center md:text-left mb-6">
+                        <h3 class="font-serif text-2xl font-bold text-gray-800 mb-2">RSVP & Contact</h3>
+                        <p class="text-sm text-gray-600">For inquiries and warm wishes, please feel free to reach out to the family host.</p>
+                        <div class="w-12 h-0.5 bg-goldAccent mt-3"></div>
+                    </div>
+
+                    <div class="space-y-4 my-6">
+                        <div class="bg-white/90 p-4 rounded-xl border border-pink-100 flex items-center justify-between">
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase">Host Contact</p>
+                                <p class="font-semibold text-gray-800 text-base">Mr. Belal Ahmad</p>
+                                <p class="text-sm text-goldAccent font-mono mt-0.5">+91 7209767674</p>
+                            </div>
+                            <div class="flex gap-2">
+                                <a href="tel:+917209767674" class="w-10 h-10 bg-green-500 text-white rounded-full flex items-center justify-center hover:bg-green-600 transition-colors" title="Call Host">
+                                    <i class="fas fa-phone"></i>
+                                </a>
+                                <a href="https://wa.me/917209767674" target="_blank" class="w-10 h-10 bg-emerald-500 text-white rounded-full flex items-center justify-center hover:bg-emerald-600 transition-colors" title="WhatsApp Host">
+                                    <i class="fab fa-whatsapp text-lg"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center p-4 bg-pink-50/50 rounded-xl border border-pink-100">
+                    <p class="text-xs text-gray-600 italic">"Your presence will add to our happiness on this blessed occasion."</p>
+                </div>
+            </div>
+
+            <!-- RSVP Form Card -->
+            <div class="glass-card rounded-2xl p-6 sm:p-8 gold-box-shadow">
+                <h3 class="font-serif text-2xl font-bold text-gray-800 mb-2 text-center md:text-left">Send Your Blessings</h3>
+                <p class="text-sm text-gray-600 mb-6 text-center md:text-left">Kindly confirm your attendance or leave a wish for the couple.</p>
+
+                <form id="rsvpForm" onsubmit="handleRSVP(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs uppercase font-semibold text-gray-600 mb-1">Your Full Name</label>
+                        <input type="text" required class="w-full px-4 py-2.5 rounded-xl border border-pink-200 focus:outline-none focus:border-goldAccent text-sm bg-white/80" placeholder="e.g. Mohd Rashid">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs uppercase font-semibold text-gray-600 mb-1">Will you attend?</label>
+                        <select class="w-full px-4 py-2.5 rounded-xl border border-pink-200 focus:outline-none focus:border-goldAccent text-sm bg-white/80">
+                            <option value="yes">Yes, gladly attending</option>
+                            <option value="no">Regretfully unable to attend</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs uppercase font-semibold text-gray-600 mb-1">Warm Wishes / Message</label>
+                        <textarea rows="3" class="w-full px-4 py-2.5 rounded-xl border border-pink-200 focus:outline-none focus:border-goldAccent text-sm bg-white/80" placeholder="Write your Dua and blessings..."></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-3 bg-gradient-to-r from-goldAccent via-yellow-500 to-goldAccent text-white font-semibold rounded-xl hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5">
+                        Send RSVP & Blessings
+                    </button>
+                </form>
+
+                <!-- Toast Message Box -->
+                <div id="toastMessage" class="hidden mt-4 p-3 bg-green-100 text-green-800 text-xs rounded-lg text-center border border-green-200">
+                    Thank you! Your blessings and response have been received.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-8 px-4 text-center border-t border-goldAccent/20 mt-12 bg-white/50">
+        <div class="max-w-xl mx-auto space-y-3">
+            <p class="font-amiri text-2xl text-gold-gradient font-bold">
+                بَارَكَ ٱللَّٰهُ لَكَ وَبَارَكَ عَلَيْكَ وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ
+            </p>
+            <p class="text-xs text-gray-600 italic">
+                "May Allah bless you and shower His blessings upon you and join you together in goodness."
+            </p>
+            <p class="text-xs text-gray-500 uppercase tracking-widest pt-4">
+                Tanzeel & Sahina Wedding Invitation • March 2027
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        /* Countdown Timer Calculation */
+        const weddingDate = new Date("March 17, 2027 10:00:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            if (distance < 0) {
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        /* Audio Player Toggle */
+        let isPlaying = false;
+        function toggleMusic() {
+            const audio = document.getElementById("bgMusic");
+            const icon = document.getElementById("musicIcon");
+            
+            if (isPlaying) {
+                audio.pause();
+                icon.className = "fas fa-music";
+            } else {
+                audio.play().catch(e => console.log("Audio play blocked by browser. Target user click required."));
+                icon.className = "fas fa-pause";
+            }
+            isPlaying = !isPlaying;
+        }
+
+        /* Clipboard Copying Helper */
+        function copyAddress(text) {
+            const tempInput = document.createElement("input");
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            
+            // Simple visual notification without alert()
+            const btn = event.currentTarget;
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = `<i class="fas fa-check text-green-600"></i> Copied!`;
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+            }, 2000);
+        }
+
+        /* RSVP Form Handler */
+        function handleRSVP(e) {
+            e.preventDefault();
+            const toast = document.getElementById("toastMessage");
+            toast.classList.remove("hidden");
+            document.getElementById("rsvpForm").reset();
+            setTimeout(() => {
+                toast.classList.add("hidden");
+            }, 4000);
+        }
+
+        /* Floating Rose Petals Animation */
+        const canvas = document.getElementById("petalCanvas");
+        const ctx = canvas.getContext("2d");
+
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener("resize", () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        const petals = Array.from({ length: 25 }, () => ({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            size: Math.random() * 8 + 6,
+            speedY: Math.random() * 1 + 0.5,
+            speedX: Math.random() * 0.5 - 0.25,
+            opacity: Math.random() * 0.5 + 0.3,
+            rotation: Math.random() * 360
+        }));
+
+        function animatePetals() {
+            ctx.clearRect(0, 0, width, height);
+
+            petals.forEach(p => {
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate((p.rotation * Math.PI) / 180);
+                ctx.fillStyle = `rgba(232, 160, 178, ${p.opacity})`;
+                
+                // Draw petal shape
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.bezierCurveTo(-p.size, -p.size, -p.size * 1.5, p.size / 2, 0, p.size * 1.5);
+                ctx.bezierCurveTo(p.size * 1.5, p.size / 2, p.size, -p.size, 0, 0);
+                ctx.fill();
+                ctx.restore();
+
+                p.y += p.speedY;
+                p.x += p.speedX;
+                p.rotation += 0.5;
+
+                if (p.y > height) {
+                    p.y = -10;
+                    p.x = Math.random() * width;
+                }
+            });
+
+            requestAnimationFrame(animatePetals);
+        }
+
+        window.onload = function() {
+            animatePetals();
+        };
+    </script>
+</body>
+</html>
